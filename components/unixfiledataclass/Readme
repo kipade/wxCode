@@ -1,0 +1,26 @@
+Component:  UnixFiledataClass
+Release:    1.2
+Documents:  http://wxcode.sourceforge.net/components/unixfiledataclass/index.html
+wxWidgets:  2.4.x, 2.6.3
+Maintainer: David Hart (dghart)
+Subdir:     unixfiledataclass
+
+Description:
+FileData is a class to encapsulate some *nix-specific things that wxWidgets (very
+reasonably) ignores.  It has accessors for information about a file's permissions,
+ownership etc, and methods to modify these where possible.  Unlike wxStat, it deals
+correctly with symlinks.
+ 
+None of this is rocket science, most methods just returning parts of statstruct. 
+However I hope it saves some wheel-reinvention.
+
+
+Release 1.2 Makes it possible to compile in a unicode build.
+
+Release 1.1 fixes a bug in CanTHISUserRead() and CanTHISUserWrite().
+The new version checks symlinks separately, as access() automatically dereferences these.
+This resulted in wrong answers, especially in the case of broken symlinks.
+I've also changed CanTHISUserRename() to check the parent dir for exec permission as well as write,
+as without this the dir cannot be stat.ed.  This meant adding a CanTHISUserWriteExec() function.
+
+Other minor additions are GetDeviceID() and GetUltimateDestination(); and GetPath() which is used internally.

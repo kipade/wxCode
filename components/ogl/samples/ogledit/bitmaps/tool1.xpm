@@ -1,0 +1,31 @@
+/* XPM */
+static const char *tool1_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"22 22 3 1",
+". c Black",
+"X c #FFFFFF",
+"  c None",
+/* pixels */
+"                      ",
+"                      ",
+" ...................  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXX.  ",
+" ...................  ",
+"                      ",
+"                      ",
+"                      "
+};

@@ -1,0 +1,123 @@
+ wxMidi component info
+ ======================
+ 
+ Component:  wxMidi
+ Release:    2.0
+ Date:       2015/Jan/03
+ wxWidgets:  2.4.x, 2.5.x, 2.6.x, 2.7.x, 2.8.x, 3.0.x
+ Maintainer: Cecilio Salmeron  <s.cecilio@gmail.com>
+   
+ Description:
+    wxMidi is a MIDI interface based on PortMidi, the Portable Real-Time MIDI Library, 
+    (PortMidi is available at: http://portmedia.sourceforge.net/).
+ 
+    wxMidi offers a set of classes: wxMidiSystem, wxMidiDevice, wxMidiMessage, 
+    wxMidiDatabaseGM and derived from them, that interfaces wxWidgets with the PortMidi
+    library. With this component you can add MIDI in/out support to your wxWidgets
+    application.
+
+    The main differences with PortMidi are:
+
+    - wxMidi provides a suitable interface, object oriented, to use portmidi with wxWidgets.
+ 
+    - All strings has been moved from PortMidi and adapted to support internationalization.
+ 
+    - SysEx messages are not received in chunks with real-time messages interleaved. In wxMidi,
+        sysex messages are received completed, in a single string of bytes, and any
+        real-time message embedded is delivered before the sysex message is delivered.
+ 
+    - All buffer allocation process for messages is now hidden in the wxMidi classes. User has
+        not to worry abut this.
+
+    - wxMidi also includes an additional feature, class wxMidiDatabaseGM, which provides methods
+        for dealing with the General MIDI Standard (GM) instruments list. 
+
+
+    By now, these classes wrap only the most important PortMidi features but they are
+    perfectly integrated with wxWidgets and easily extensible since they provide good
+    commented code and documentation.
+
+ 
+
+
+ midisound sample
+ =================
+ 
+ This is a little application that uses the wxMidi classes showing their main features and usage.
+
+ 
+
+
+ wxMidi package structure
+ =============================
+
+ Directory              Contents
+ -------------------    --------------------------------------------------------
+ build/msw              makefiles and project files for compiling the sample
+                        application using MS VisualStudio .NET 2003
+
+ build/linux            makefiles and project files for compiling the sample
+                        application using Code::Blocks IDE in linux
+                        
+ build/msvc-e2010       makefiles and project files for compiling the sample
+                        application using MS VisualC++ Express 2010
+
+ samples/midisound      source files the sample application
+
+ src                    source and include files for wxMidi
+ 
+ portmidi               header files for portmidi and prebuild pormidi libraries
+                        for MS Windows
+
+ locale                 .po and .mo files with current translations
+
+ doc                    documentation
+
+
+
+
+wxMidi installation and usage
+==============================
+ 
+No installation needed. Use wxMidi source files as part of your application source
+code. wxMidi is just two source files and one header file. Copy them to your 
+application source tree, and compile them with your code.
+
+Obviously you will also require the portmidi library and you will have to modify
+your application makefile or project build file to link with this library. 
+
+In Linux, portmidi is normally already installed in your system. If not, install
+package portmidi. For instance, in Debian based systems open a terminal window
+and enter:
+	sudo apt-get install libportmidi-dev
+
+
+In MS Windows the situation is just the contrary: unless another package has 
+already installed portmidi, you have great chances to have to install it. For 
+your convenience, I used to include in the wxMidi package the portmidi libraries
+I was using on my Windows machine, so that you could avoid having to download
+and build them. But nowadays I no longer develop for Windows. So the included
+library is the one I used in my old Windows XP machine. Sorry! You can
+download portmidi from http://portmedia.sourceforge.net
+
+
+IMPORTANT NOTES FOR MICROSOFT WINDOWS USERS
+
+1. I no longer use a machine with Microsoft Windows. Therefore, last test I did
+   was on windows XP.
+
+2. In Windows XP, portmidi needs the portmidi.dll, but there is no simple way
+   to set up projects to use this dll. Therefore, YOU MUST COPY this dll to your
+   application executable file folder. 
+
+3. In later Windows versions, I think that portmidi.dll is no longer needed.
+
+
+
+ Known bugs and problems
+ ========================
+
+    None.
+
+
+

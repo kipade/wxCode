@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<makefile>
+
+    <set var="WX_UNICODE">1</set>
+    <set var="WX_MONOLITHIC">0</set>
+    <set var="SHARED">0</set>
+    <set var="USE_UNSTABLE_VERSION">1</set>
+    <include file="presets/wxcode.bkl" once="1"/>
+
+
+    <!-- The wxXml2 settings -->
+    <!-- =================== -->
+
+    <set-comp-name>wxxml2</set-comp-name>
+
+
+    <!-- The dependencies... -->
+    <!-- =================== -->
+
+    <!-- on windows we will always (at first I put an option to disable this
+         but that made the build system more complex and probably wasn't very
+         useful at all) use the libxml2 & iconv placed in the thirdparty folder -->
+    <!-- on unix instead we will use the system-installed libxml2 & iconv libs -->
+    <set var="LIBXML2_DIR">
+        <if cond="WX_DEBUG=='0'">$(SRCDIR)/deps/lib/release</if>
+        <if cond="WX_DEBUG=='1'">$(SRCDIR)/deps/lib/debug</if>       
+    </set>
+    <!-- <set var="ICONV_DIR">
+        $(SRCDIR)$(DIRSEP)deps$(DIRSEP)iconv
+    </set> -->
+
+    <!-- Be sure to include this line in your projects which use the
+         libxml2 library: otherwise you'll get "undefined references to __xmlFree"
+         when compiling wxxml2 with MINGW compiler 
+    -->
+    <set var="STATIC_DEF">
+        <if cond="WX_SHARED=='0' and FORMAT=='mingw'">LIBXML_STATIC</if>
+    </set>
+
+    <template id="xmlbasic">
+        <if cond="FORMAT not in ['autoconf']">
+            <!-- <stdlib>$(LIBXML2_DIR)</stdlib> -->
+        <!--    <stdlib>$(ICONV_DIR)</stdlib> -->
+        <!--    <define>$(STATIC_DEF)</define>  -->
+            <include>$(SRCDIR)/deps/include</include>
+            <lib-path>$(LIBXML2_DIR)</lib-path>
+        </if>
+    </template>
+
+    <!-- the libraries required by wxXml2 -->
+    <define-tag name="xml2libs" rules="lib,dll,exe">
+        <if cond="FORMAT=='mingw' or FORMAT=='autoconf' or FORMAT=='gnu'"><sys-lib>xml2</sys-lib></if>
+        <if cond="FORMAT!='mingw' and FORMAT!='autoconf' and FORMAT!='gnu'"><sys-lib>libxml2</sys-lib></if>
+        <if cond="FORMAT!='autoconf' and FORMAT!='gnu'"><sys-lib>iconv</sys-lib></if>
+    </define-tag>
+
+
+
+    <!-- The wxXml2 lib/dll  -->
+    <!-- =================== -->
+
+    <!-- the wxXml2 library -->
+    <lib id="wxxml2_lib" template="wxcode-lib,xmlbasic" cond="WX_SHARED=='0'"/>
+    <dll id="wxxml2_dll" template="wxcode-dll,xmlbasic" cond="WX_SHARED=='1'">
+        <xml2libs/>
+        <wx-lib>core</wx-lib>
+        <wx-lib>base</wx-lib>
+    </dll>
+    <set var="MSVC6PRJ_MERGED_TARGETS">wxxml2=wxxml2_lib+wxxml2_dll</set>
+
+
+
+    <!-- The sample of wxXml2 -->
+    <!-- ==================== -->
+
+    <wxcode-sample id="minimal" template="xmlbasic">
+        <dir>sample</dir>
+        <has-win32-res/>
+
+        <!-- lib list: -->
+        <library>wxxml2_lib</library>
+        <xml2libs/>
+        <wx-lib>core</wx-lib>
+        <wx-lib>base</wx-lib>
+    </wxcode-sample>
+
+
+
+    <!-- Auxiliary targets -->
+    <!-- ================= -->
+
+    <make-tarball/>
+    <make-zip/>
+
+</makefile>

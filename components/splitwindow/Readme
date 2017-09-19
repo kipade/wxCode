@@ -1,0 +1,12 @@
+Component:  wxSplitWindow
+Release:    2006-06-21
+Documents:  http://wxcode.sourceforge.net/components/splitwindow/index.html
+wxWidgets:  2.6.x
+Maintainer: Otto Wyss (wyo)
+Subdir:     splitwindow
+
+Description:
+wxSplitWindow allows to split a window into 2 subwindows either horizontal
+or vertical with a sash in between. It's similar to wxSpitterWindow but it
+doesn't remove any window if unsplit. So the 2 partial windows can always
+be access regardless if split or unsplit.

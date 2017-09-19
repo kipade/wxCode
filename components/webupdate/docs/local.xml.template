@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- the Document Type Definition (DTD) for a local XML WebUpdate script
+     is located at
+     
+        http://wxcode.sourceforge.net/components/webupdate/local.dtd  
+   
+     as the following tag says to the XML parsers.
+-->
+<!DOCTYPE webupdate PUBLIC "-//WebUpdate//DTD WebUpdater 1.0//EN" 
+	"http://wxcode.sourceforge.net/components/webupdate/local.dtd">
+	
+	
+<!-- NOTE: all the comments located in local XML scripts will be lost
+     after the first update by WebUpdater since it overwrites this file
+     and don't save the comments, too.
+-->
+
+
+<!-- The <webupdate> tag is the root of the local XML script.
+     Every info is contained inside it.
+     You should always specify as property of this tag the version
+     of this local XML script. -->
+<webupdate version="1.0">
+
+    
+      <!-- some settings about the application to update... -->
+      <appname>AppName</appname>
+      <appfile>myprogram</appfile>
+      
+      
+      <!-- ...about the XRC resource name to use for webupdater... -->
+      <dlgxrc>wxWebUpdateDlg</dlgxrc>
+      
+      
+      <!-- ...where to find the list of updated packages ... -->
+      <remoteuri>http://myserver/updates/list.xml</remoteuri>
+      
+      
+      <!-- ...the list of the local packages -->
+      <local-package id="core">
+        <version>1.0.0</version>
+      </local-package>
+      <local-package id="addon1">
+        <version>1.0.0</version>
+      </local-package>
+      <local-package id="addon2">
+        <version>1.0.0</version>
+      </local-package>
+      
+      
+      <!-- the list can be as long as you need... -->
+      ...
+      
+      
+      <!-- if you want to be able to update the updater, you should include this
+           package in the list (see the WebUpdate documentation for more info) -->
+      <local-package id="WebUpdater">
+        <version>1.0.0</version>
+      </local-package>
+  
+</webupdate>

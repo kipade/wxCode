@@ -1,0 +1,150 @@
+<html>
+<head><title>wxMimeType</title></head>
+
+<body BGCOLOR=#FFFFFF>
+<FONT FACE="Arial, Lucida, Helvetica">
+<a name="wxMimeType"></a>
+
+<h2>wxMimeType</h2>
+<p>
+This is currently just a prove of concept, so don't expect too much.
+</p>
+<p>
+wxMimeType allows to retrieve and to set all the mime type information of file:
+</p>
+<ul>
+<li>Gets the mime type of a file through filename and/or content</li>
+<li>Reads all and some the data of a mime type, e.g. application, icon</li>
+<li>Writes the data of a mime type, creates it if necessary</li>
+</ul>
+<p>
+wxMimeType uses the following data structure:
+<p>
+</p><pre>
+struct wxMimeTypeData {
+    wxString filename; // not used so far
+    wxString extension;
+    wxString magicId; // not used so far
+    wxString creator; // not used so far
+    wxString description;
+    wxString appname;
+    wxIcon icon; // not used so far
+};
+</p></pre>
+<p>
+<b>Include files</b><p>&lt;wx/mimetypes.h&gt;
+</p>
+<a HREF="#wxmimetypeconstr">wxMimeType::wxMimeType</a><br>
+<a HREF="#wxmimetypeadd">wxMimeType::Add</a><br>
+<a HREF="#wxmimetyperemove">wxMimeType::Remove</a><br>
+<a HREF="#wxmimetypeexists">wxMimeType::Exists</a><br>
+<a HREF="#wxmimetypematch">wxMimeType::Match</a><br>
+<a HREF="#wxmimetypeisstandard">wxMimeType::IsStandard</a><br>
+<a HREF="#wxmimetypegetdata">wxMimeType::GetData</a><br>
+<a HREF="#wxmimetypegetmimetype">wxMimeType::GetMimeType</a><br>
+<p>
+
+<hr>
+<a NAME="wxMimeTypeconstr"></a>
+<h3>wxMimeType::wxMimeType</h3>
+<p>
+<b></b> <b>wxMimeType</b>()
+</p>
+Constructor.
+<p>
+
+<hr>
+<a NAME="wxmimetypeadd"></a>
+<h3>wxMimeType::Add</h3>
+<p>
+<b>bool</b> <b>Add</b> (<b>const wxString&amp;</b> <I>mimetype</I>, <b>wxMimeTypeData*</b> <I>data</I>, <b>bool</b> <I>standard</I> = false)
+</p>
+<p>
+Adds an association of a file type to a mime type. Returns true if successful.
+</p>
+<p>
+Currently works only under Windows and only with file extension.
+<p>
+
+<hr>
+<a NAME="wxmimetyperemove"></a>
+<h3>wxMimeType::Remove</h3>
+<p>
+<b>bool</b> <b>Remove</b> (<b>wxMimeTypeData*</b> <I>data</I>)
+</p>
+<p>
+Removes an association of a file type to a mime type. Returns true if successful.
+</p>
+<p>
+Currently works only under Windows and only with file extension.
+<p>
+
+<hr>
+<a NAME="wxmimetypeexists"></a>
+<h3>wxMimeType::Exists</h3>
+<p>
+<b>bool</b> <b>Exists</b> (<b>wxMimeTypeData*</b> <I>data</I>)
+</p>
+<p>
+Returns true if the mime type of this association exists.
+</p>
+<p>
+Currently works only under Windows and only with file extension.
+<p>
+
+<hr>
+<a NAME="wxmimetypematch"></a>
+<h3>wxMimeType::Match</h3>
+<p>
+<b>bool</b> <b>Match</b> (<b>wxMimeTypeData*</b> <I>data</I>)
+</p>
+<p>
+Returns true if the mime type of this association exists and the application name matches.
+</p>
+<p>
+Currently works only under Windows and only with file extension.
+<p>
+
+<hr>
+<a NAME="wxmimetypeisstandard"></a>
+<h3>wxMimeType::IsStandard</h3>
+<p>
+<b>bool</b> <b>IsStandard</b> (<b>wxMimeTypeData*</b> <I>data</I>)
+</p>
+<p>
+Returns true if the mime type of this association exists, the application name matches and the application is the standard for this mime type.
+</p>
+<p>
+Currently not implemented.
+<p>
+
+<hr>
+<a NAME="wxmimetypegetdata"></a>
+<h3>wxMimeType::GetData</h3>
+<p>
+<b>bool</b> <b>GetData</b> (<b>wxMimeTypeData*</b> <I>data</I>)
+</p>
+<p>
+Returns all mime type data of an association. Returns true if successful.
+</p>
+<p>
+Currently not implemented.
+<p>
+
+<hr>
+<a NAME="wxmimetypegetmimetype"></a>
+<h3>wxMimeType::GetMimeType</h3>
+<p>
+<b>wxString</b> <b>GetMimeType</b> (<b>wxMimeTypeData*</b> <I>data</I>)
+</p>
+<p>
+Returns the mime type of an association.
+</p>
+<p>
+Currently not implemented.
+<p>
+
+
+</font>
+</body>
+</html>

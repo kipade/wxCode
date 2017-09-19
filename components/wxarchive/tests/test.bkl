@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!-- $Id: test.bkl,v 1.2 2005-04-02 11:29:38 chiclero Exp $ -->
+
+<makefile>
+
+    <include file="presets/wx.bkl"/>
+
+    <option name="CPPUNIT_CFLAGS">
+        <default-value></default-value>
+        <description>Compiler flags to find CppUnit headers</description>
+    </option>
+    <option name="CPPUNIT_LIBS">
+        <default-value></default-value>
+        <description>Linker flags to find CppUnit libs</description>
+    </option>
+
+    <set var="DEBUGINFO">
+        <if cond="FORMAT!='autoconf' and WX_DEBUG=='1'">on</if>
+    </set>
+    <set var="DLLFLAG">
+        <if cond="FORMAT!='autoconf' and WX_SHARED=='1'">WXUSINGDLL</if>
+    </set>
+    
+    <exe id="test" template="wx">
+        <set var="TESTDIR">$(DOLLAR)(WXWIN)/tests</set>
+
+        <cppflags>$(CPPUNIT_CFLAGS)</cppflags>
+        <ldflags>$(CPPUNIT_LIBS)</ldflags>
+
+        <debug-info>$(DEBUGINFO)</debug-info>
+        <define>$(DLLFLAG)</define>
+        <runtime-libs>dynamic</runtime-libs>
+        <threading>multi</threading>
+
+        <include>$(SRCDIR)/../include</include>
+        <include>$(TESTDIR)</include>
+        <include>$(TESTDIR)/archive</include>
+
+        <sources>
+            arctest.cpp
+            tartest.cpp
+            ../src/tarstrm.cpp
+        </sources>
+        
+        <wx-lib>base</wx-lib>
+    </exe>
+
+</makefile>

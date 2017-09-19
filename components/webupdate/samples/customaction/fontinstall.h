@@ -1,0 +1,32 @@
+/////////////////////////////////////////////////////////////////////////////
+// Name:        fontinstall.h
+// Purpose:     wxWebUpdateActionFontInstall - an example of a custom action
+// Author:      Francesco Montorsi
+// Created:     2005/08/26
+// RCS-ID:      $Id: fontinstall.h 308 2005-10-20 16:06:01Z frm $
+// Copyright:   (c) 2005 Francesco Montorsi
+// Licence:     wxWidgets licence
+/////////////////////////////////////////////////////////////////////////////
+
+
+#ifndef _WX_FONTINSTALL_H_
+#define _WX_FONTINSTALL_H_
+
+// defines the base class wxWebUpdateAction
+#include "wx/stdactions.h"
+
+
+// The "fontinstall" action.
+class WXDLLIMPEXP_WEBUPDATE wxWebUpdateActionFontInstall : public wxWebUpdateAction
+{
+	DECLARE_WEBUPDATEACTION(wxWebUpdateActionFontInstall, wxT("fontinstall"))
+
+protected:		// here go the declarations of the variables used by this action
+
+	// The path & name of the font to install.
+	wxString m_strFile;
+};
+
+
+#endif // _WX_FONTINSTALL_H_
+

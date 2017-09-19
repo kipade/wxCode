@@ -1,0 +1,243 @@
+
+/*! \mainpage wxJSON - The wxWidgets implementation of JSON 
+
+<center><b>version 1.2</b></center>
+
+<center>http://luccat.users.sourceforge.net/wxjson/</center>
+
+\section main_intro Introduction
+
+JSON (JavaScript Object Notation) is a lightweight data-interchange format.
+It is easy for humans to read and write. It is easy for machines to parse
+and generate. It is based on a subset of the JavaScript Programming Language,
+Standard ECMA-262 3rd Edition - December 1999. JSON is a text format that
+is completely language independent but uses conventions that are familiar
+to programmers of the C-family of languages, including C, C++, C#, Java,
+JavaScript, Perl, Python, and many others. These properties make JSON an 
+ideal data-interchange language.
+
+Here is an example of JSON formatted data:
+
+\code
+ {
+   "book":
+   {
+     "title"  : "How to catch Peter Pan",
+     "author" : "Captain Hook",
+     "pages"  : 285,
+     "price"  : 29.95,
+     "translations" :
+     [
+       "german",
+       "french",
+       "spanish",
+       "italian"
+     ]
+   }
+ }
+\endcode
+
+And this is the same data in XML format:
+
+\code
+ <book title="How to catch Peter Pan" author="Captain Hook" pages=285 price=29.95>
+   <translations>
+     <item "german"/>
+     <item "french"/>
+     <item "spanish"/>
+     <item "italian"/>
+   </translations>
+ </book>
+\endcode
+
+As you can see, JSON format is much more readable by humans and
+uses a syntax similar to many C-like languages.
+Someone may say that XML is object-oriented and JSON in not.
+The answer is that none of the two formats is really
+object-oriented.
+In fact, XML is a document-oriented format while JSON is
+a data-oriented format.
+
+
+\section main_struct JSON data format
+
+JSON handles data. There are the following data types in JSON:
+
+\li strings: a string is a sequence of ZERO or more unicode characters
+	wrapped in double quotes, using backslash escapes
+
+\li numbers: a number is very much like a C or Java number, except
+	that the octal and hexadecimal formats are not used
+
+\li the following three literals: \b null, \b true and \b false
+
+\li objects: a JSON object is a collection of name/value pairs
+
+\li arrays: an array is an ordered collection of values
+
+\li binary buffers: this is a \b wxJSON extension to the JSON syntax and
+    let the user store binary memory buffers in JSON values. To know more
+    about this topic read \ref wxjson_tutorial_memorybuff
+
+
+JSON is built on two structures:
+
+\li the \b object: a collection of name/value pairs. In various languages,
+	this is realized as an object, record, struct, dictionary, hash table,
+	keyed list,	or associative array. 
+\li the \b array: an ordered list of values. In most languages, this is
+	realized as an array, vector, list, or sequence.
+
+\subsection main_intro_object The JSON object
+
+The JSON object is an unordered collection of key/value pairs (or
+name/value pairs).
+The keys are strings and the values are any of the JSON types including
+object and array. A colon separates
+the keys from the values, and comma separates the pairs. The whole thing
+is wrapped in curly braces. It maps directly onto objects, structs, records,
+and hashtables. This is an example of a JSON object:
+
+\code
+{
+    "name": "Jack (\"Bee\") Nimble", 
+    "format": {
+        "type":       "rect",
+        "size" :
+        { 
+          "width":      1920, 
+          "height":     1080, 
+        },
+        "interlace":  false, 
+        "frame rate": 24
+    }
+}
+\endcode
+
+\subsection main_intro_array The JSON array
+
+The JSON array is an ordered collection of values separated by commas.
+The whole thing is wrapped in square brackets. It maps directly onto arrays,
+vectors, and lists.
+These are examples of JSON arrays:
+
+\code
+  ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  [
+    [0, -1, 0],
+    [1, 0, 0],
+    [0, 0, 1]
+  ]
+\endcode
+
+
+\section main_pre Prerequisites of wxJSON
+
+wxJSON compiles and works (at least, it \e should work) on wxWidgets 2.8
+(minimum is wxW 2.8.4) and wxWidgets 2.9 (minimum is 2.9.1).
+
+
+
+\section main_classes The JSON implementation for wxWidgets
+
+The wxJSON library is a JSON implementation for wxWidgets and it is composed
+of only three
+classes which uses the \b wxBase library: the only needed classes
+are: \b wxString, \b wxObjArray, \b wxHashMap, \b wxInputStream, \b wxOutputStream,
+\b wxArrayString and the \b wxMBConv -derived classes.
+wxJSON does not depend on the \b std::string class nor on STL
+containers.
+
+Starting from version 1.2 the \b wxJSON library compiles also
+if wxWdigets is configured with the \c --enable-stl flag then STL is
+available for both wxWdigets and wxJSON.
+In fact, if STL is enabled, the wxJSON \e array type and \e key/value type
+are implemented using STL containers.
+Otherwise, the wxWidegts' own implementation of container classes is used.
+Note that from the point of view of the wxJSON user, the actual implementation
+is totally transparent: JSON values are accessed in the same way in both
+implementations.
+To know more read \ref json_internals_array and \ref json_internals_map.
+
+
+The following three classes are defined in wxJSON:
+
+\li wxJSONValue this class holds the JSON value which can be 
+	an integer, a double, a boolean, a string, an array
+      of JSON values or a map of key/value pairs
+
+\li wxJSONReader the parser of a JSON-formatted text
+
+\li wxJSONWriter the generator of a JSON formatted text 
+
+Pages related to this documentation:
+
+\li \ref wxjson_tutorial.
+\li \ref pg_json_internals
+\li \ref wxjson_whatsnew12
+
+\section main_install Installation
+
+The \b wxJSON library only consists of three source files and their
+related header files:
+
+\code
+ jsonvalue.cpp
+ jsonreader.cpp
+ jsonwriter.cpp
+\endcode
+
+For info about installation of the library read the INSTALL
+text file in the top-level directory.
+You can download this library in the following ways:
+
+ \li using anonymous access to the \b Subversion repository of the
+	<A href="http://wxcode.sf.net">wxCode project</a> on SourceForge.
+	You will need the <A href="http://bakefile.sf.net">bakefile</a> tools in
+	order to generate the \e makefiles for your system / compiler to
+	actually compile the library unless you write it yourself.
+
+ \li download the tarball which contains the \e makefiles for the most
+	common systems / compilers by clikking
+	<A href="https://sourceforge.net/project/showfiles.php?group_id=51305&package_id=45182">
+	here</a>
+
+
+\section main_links Usefull links:
+
+
+ \li <A href="http://www.json.org">Introducing JSON</A>
+ \li <A href="http://www.json.org/fatfree.html">The Fat-Free Alternative to XML</A>
+ \li <A href="http://www.infoq.com/news/2006/12/json-vs-xml-debate">
+	The JSON vs. XML debate</A>
+ \li <A href="http://simonwillison.net/2006/Dec/20/json/">
+	Why JSON jsn't just for JavaScript</A>
+
+\section main_limits Limitations
+
+The \b wxJSON library is a complete implementation of the
+JSON data-interchange format.
+All JSON specifications are implemented in this library plus
+some extensions in the writer and in the parser class.
+
+JSON data format is very stable. It is accredited to be
+stable forever or, at least, until programming languages 
+will be based on numbers, strings, booleans, structures and
+arrays.
+This version (1.3) is a stable release but there are plans to
+add some new features to the library
+(see http://luccat.users.sourceforge.net/wxjson/newver_01.html).
+Also, new versions of this library will be realesed in order to
+keep \b wxJSON compatible with the new releases of \b wxWidgets.
+
+
+\section main_thanks Contributors
+
+Many thanks to Bryan Ashby, Robbie Groenewoudt, Alexander Stigsen,
+Andrejs Cainikovs, Piotr Likus, Kolya Kosenko and Catalin
+for their help, hints, feedback.
+
+
+
+*/
+

@@ -1,0 +1,323 @@
+<!--
+   Name:        remote.dtd
+   Purpose:     a simple DTD to validate update scripts
+   Version:     1.0
+   Author:      Francesco Montorsi
+   Created:     2005/06/24
+   RCS-ID:      $Id: remote.dtd 390 2006-03-13 23:10:31Z frm $
+   Copyright:   (c) 2005 Francesco Montorsi
+   Licence:     wxWidgets licence
+
+   This Document Type Definition (DTD) is for the update scripts that you put
+   in your webserver. This file should make easier to check validity of the
+   scripts you write and it should also be as a simple reference guide for the
+   update script format.
+
+   The remote XML scripts which follows this DTD should include the following
+   line before the <webupdate> root tag:
+
+      <!DOCTYPE webupdate PUBLIC "-//WebUpdate//DTD WebUpdater 1.0//EN"
+            "http://wxcode.sourceforge.net/components/webupdate/remote.dtd">
+
+   which just tells to XML parser that the XML file follows the WebUpdater DTD v1.0.
+
+   I suggest you to look at the following files as examples of WebUpdate scripts:
+
+     http://wxcode.sf.net/components/webupdate/script1.xml
+     http://wxcode.sf.net/components/webupdate/script2.xml
+
+   Also remember to validate your XML files against this DTD before mailing for
+   problems about your scripts: WebUpdate component is not responsible for
+   unwanted behaviours coming from malformed update scripts !
+
+   NOTE ABOUT THE SPECIAL '//' CHAR SEQUENCE: sometimes you need to specify in
+   one of the <actions> subtags the path separator in a platform-indepedent way.
+   This can be done using twice the forward slash character: that sequence will be
+   translated (only in <action> subtags!) as '/' on Unix-based systems and as '\' on
+   win32 systems.
+   If you need to write the '//' sequence and you don't want it to be substituted you need
+   to write three times the forward slash: '///' will be intepreted as '//'.
+
+   NOTE ABOUT "KEYWORD SUBSTITUTION": in this context, by "keyword substitution"
+   we mean the process of replacing those strings in the form $(...) with values
+   defined at compile-time & run-time in the program which downloads this script file.
+   Keyword substitution is performed only in the text content of those tags whose
+   description explicitely state it.
+   The list of keywords which can be used is:
+
+   - folders:
+     $(programdir) = the folder where the WebUpdater executable is placed; ends with '//' special character.
+     $(downloaddir) = the folder where the downloaded files are placed; ends with '//' special character.
+     $(tempdir) = a temporary folder already existing and thus (probably) non-empty; ends with '//' special character.
+     $(newtempdir) = a temporary folder which has been created by the WebUpdate and thus is empty; ends with '//' special character.
+     $(localdir) = the folder where the local XML script is located; ends with '//' special character.
+     $(remotedir) = the folder where the remote XML script is located; ends with '//' special character.
+
+   - files:
+     $(updater) = the path of the file and the filename of the WebUpdater program
+     $(program) = the path of the file and the filename of the program to update
+                  (the filename is taken from the local script)
+     $(localxml) = the path of the file and the filename (as URI) of the local XML script (acquired when parsing the local script).
+     $(remotexml) = the path of the file and the filename (as URI) of the remote XML script (taken from the local XML script).
+
+   - names:
+     $(appname) = the name of the application (as loaded by the local script)
+     $(updatername) = the name of the WebUpdater application
+     $(exe) = the postfix of an executable file for the current platform
+              (i.e .EXE on win32, nothing on other platforms)
+
+   - command names:
+     $(cp) = the copy command (i.e. 'cp -f' on unix, 'cmd.exe /c copy /y' on windows)
+     $(mv) = the move command (i.e. 'mv -f' on unix, 'cmd.exe /c move /y' on windows)
+     $(cd) = the change directory command (i.e. 'cd' on unix, 'cmd.exe /c cd' on windows)
+     $(mkdir) = the make directory command (i.e. 'mkdir' on unix, 'cmd.exe /c mkdir' on windows)
+
+     NOTE: the commands above have the aesthetic disadvantage that they open a console window when they are used for example as:
+               <run cmd="$(cp)" args="c:\from\* c:\to" />
+           and thus you should try to use the <copy>, <mkdir> actions instead.
+
+   - miscellaneous:
+     $(pid) = the process ID of the updater program
+
+   - these are available only after the relative tags:
+     $(latest-version) = the version of the package (available only after <latest-version>)
+     $(thisfile) = the name of the file of this package (available only after <uri>)
+     $(id) = the ID name of this package (available only after <package id="">)
+
+-->
+
+
+<!-- To support i18n the messages which are shown to the user can be marked with a LANG property
+     which indicates the language of the contained message.
+     Multiple messages with different LANG properties can be specified so that WebUpdater will be
+     able to choose at run-time the best one to show to the user.
+ -->
+<!ENTITY % LanguageCode "NMTOKEN">
+    <!-- a language code, as per [RFC3066] -->
+
+
+
+
+
+
+<!-- WEBUPDATE tag: this is the root of the script file.
+                    Requires the 'version' property which must be set to the
+                    same version of this DTD file (you can find it at the
+                    beginning of this document).
+
+                    NOTE: multiple <msg-update-available> and <msg-update-notavailable>
+                          tags can be specified provided that they have different LANG
+                          properties.
+-->
+<!ELEMENT webupdate (msg-update-available*, msg-update-notavailable*, package*)>
+<!ATTLIST webupdate version CDATA #IMPLIED>
+
+
+
+<!--                                                                                -->
+<!--                        CHILDREN TAGS OF 'WEBUPDATE'                            -->
+<!--                                                                                -->
+
+
+<!-- PACKAGE tag: this begins a new package section where
+                  are provided all the info about new updates.
+                  Requires an "id" attribute (which must be unique).
+
+                  NOTE: multiple <description> tags can be specified provided that they
+                        have different LANG properties.
+-->
+<!ELEMENT package (requires?, latest-version, latest-download*, description*)>
+<!ATTLIST package id ID #REQUIRED>
+
+
+<!-- MSG-UPDATE-AVAILABLE tag: contains a text message which is displayed to the user in case
+                               a new version of some package is available for its platform.
+                               Keyword substitution is performed in the text.
+-->
+<!ELEMENT msg-update-available (#PCDATA)>
+<!ATTLIST msg-update-available lang %LanguageCode; #IMPLIED>
+
+<!-- MSG-UPDATE-NOTAVAILABLE tag: contains a text message which is displayed to the user in case
+                                 a new version of the package is NOT available for its platform.
+                                 Keyword substitution is performed in the text.
+-->
+<!ELEMENT msg-update-notavailable (#PCDATA)>
+<!ATTLIST msg-update-notavailable lang %LanguageCode; #IMPLIED>
+
+
+
+
+
+
+<!--                                                                                -->
+<!--                        CHILDREN TAGS OF 'PACKAGE'                              -->
+<!--                                                                                -->
+
+<!-- REQUIRES tag: lists the packages required for the installation of this package.
+                   The list must be comma-separed and the names of the packages referenced
+                   must be declared somewhere in the web update script.
+-->
+<!ELEMENT requires (#PCDATA)>
+
+
+
+<!-- LATEST-VERSION tag: contains the version string of the most updated version
+                         available in the webserver.
+                         You can use the 'importance' attribute to define how much
+                         important is this update...
+-->
+<!ELEMENT latest-version (#PCDATA)>
+<!ATTLIST latest-version importance (low|normal|high) "normal">
+
+
+<!-- LATEST-DOWNLOAD tag: must contain the URI tag with the download location of the most updated
+                          file available in the webserver. Requires also a "platform" child tag
+                          which specifies the platform targeted by this download.
+                          The "md5" subtag can be optionally used to specify a MD5 checksum.
+                          At least one "action" child tag must be present to specify the action to
+                          take at the end of the download.
+-->
+<!ELEMENT latest-download (uri, platform, md5?, actions+)>
+
+
+<!-- DESCRIPTION tag: the description for this package; contained URLs will be automatically highlighted
+                      so that the user can click them to directly visit them.
+                      This is useful to embed a link to the changelog for this package, for example.
+                      Keyword substitution is performed in the text.
+-->
+<!ELEMENT description (#PCDATA)>
+<!ATTLIST description lang %LanguageCode; #IMPLIED>
+
+
+
+
+<!--                                                                                -->
+<!--                     CHILDREN TAGS OF 'LATEST-DOWNLOAD'                         -->
+<!--                                                                                -->
+
+<!-- PLATFORM tag: contains the platform code for the platform which is targeted
+                   by the current download.
+-->
+<!ELEMENT platform EMPTY>
+<!ATTLIST platform name (msw|gtk|mac|x11|motif|mgl|os2|any) "any">
+<!ATTLIST platform arch (32|64) "32">	<!-- 32 or 64 bit architecture ? -->
+<!ATTLIST platform id CDATA ".*">		<!-- a regexp matching the wxGetOsDescription() for the targeted 
+											 platform; please note that to match *any* OS description you
+											 must use .* and not * since the last one is not a valid regexp! -->
+
+
+
+<!-- URI tag: specifies the URI of the current download.
+              Keyword substitution is performed in the text; this allows you to write
+              URLs in this way:
+
+              <uri>http://mysite.net/myprog-$(latest-version).zip</uri>
+
+              which is very handy for those projects who follow a strict naming rule.
+              This allows you to avoid to update the filename each time a new release
+              is out but don't forget that you will still need to update the tags:
+              <latest-version>, <md5>, etc ...
+
+-->
+<!ELEMENT uri (#PCDATA)>
+
+
+<!-- MD5 tag: allows the webupdate XML script writer to specify a MD5 file checksym for
+              this download.
+-->
+<!ELEMENT md5 (#PCDATA)>
+
+
+<!-- ACTIONS tag: allows to specify an action to take when the download is complete.
+                  There are some built-in action handlers for "run", "extract", "exit"...
+                  see the following section.
+-->
+<!ELEMENT actions (run*|extract*|copy*|mkdir*|mkfile*|open*)+>
+
+
+
+
+<!--                                                                                -->
+<!--                          CHILDREN TAGS OF 'ACTIONS'                            -->
+<!--                                                                                -->
+
+<!-- RUN tag: executes through the shell of the platform a command specified through the
+              "cmd" or "file" properties.
+-->
+<!ELEMENT run EMPTY>
+<!ATTLIST run flags (ASYNC|SYNC) "ASYNC">           <!-- the possible flags are: ASYNC, SYNC -->
+<!ATTLIST run args CDATA "">                        <!-- the arguments to give to the file to run -->
+<!ATTLIST run cmd CDATA "$(thisfile)">              <!-- the path+name of the file to run; identic to 'file' property - use the one you prefer -->
+<!ATTLIST run file CDATA "$(thisfile)">             <!-- the path+name of the file to run; identic to 'cmd' property - use the one you prefer -->
+
+
+<!-- EXTRACT tag: decompress the given "file" in the given location (see "where" property).
+                  The name of the decompressed file can be chosen using the "namemap" property.
+                  The destination folder will be created if it does not exist.
+
+     NOTE: this action has a special behaviour which allow to update
+     the WebUpdater application itself. In fact, when it founds a compressed file which
+     is named "$(updatername)$(exe)", then it outputs the file as "_$(updatername)$(exe)".
+     This is because the WebUpdater cannot replace itself and thus any try to overwrite the
+     WebUpdater executable would fail.
+     The app which uses WebUpdater should look for filenames called "_$(updatername)$(exe)"
+     and rename them to "$(updatername)$(exe)".
+-->
+<!ELEMENT extract EMPTY>
+<!ATTLIST extract where CDATA "$(programdir)">          <!-- the folder where extracted files will be put -->
+<!ATTLIST extract file CDATA "$(thisfile)">             <!-- the file to extract -->
+<!ATTLIST extract type (zip) "zip">                     <!-- the possible values actually are: 'zip' -->
+<!ATTLIST extract namemap CDATA "">                     <!-- a comma-separed list of values like
+                                                            compressedname1=outputname1,compressedname2=outputname2...
+                                                          which tell the extract action how to name the extracted file.
+                                                          By default, the list is empty and each compressed file is extracted
+                                                          in the destination folder using the compressed filename. -->
+
+
+<!-- COPY tag: copies the file from the given path to the given folder. Can be used as move actions using
+               the "move" property.
+-->
+<!ELEMENT copy EMPTY>
+<!ATTLIST copy from CDATA #IMPLIED>            <!-- the original files to copy; folders/patterns can be used -->
+<!ATTLIST copy to CDATA #IMPLIED>              <!-- the destination folder -->
+<!ATTLIST copy move (1|0) "0">                 <!-- if "1" the "copy" action will act as "move" property -->
+<!ATTLIST copy create (1|0) "1">               <!-- if "1" the destination folder will be created if it does not exist -->
+<!ATTLIST copy overwrite (1|0) "1">            <!-- if "1" the destination files will be overwritten if they already exist -->
+
+
+<!-- MKDIR tag: creates a folder.
+-->
+<!ELEMENT mkdir EMPTY>
+<!ATTLIST mkdir dir CDATA #IMPLIED>             <!-- the folder to create -->
+
+
+<!-- MKFILE tag: creates a file with the given content encoded in the given encoding.
+-->
+<!ELEMENT mkfile EMPTY>
+<!ATTLIST mkfile file CDATA #IMPLIED>       <!-- the file name (and optionally its path) to create -->
+<!ATTLIST mkfile content CDATA "">          <!-- the content of the file which is created by this tag -->
+<!ATTLIST mkfile overwrite (1|0) "1">       <!-- indicates if the file must be overwritten or not, if it already exists -->
+<!ATTLIST mkfile encoding CDATA "UTF8">     <!-- indicates the encoding of the created file; defaults to UTF8 -->
+
+
+<!-- OPEN tag: opens with the default MIME handler, the resource pointed by the "file" property.
+               This action is similar to the <run> action but works using the default MIME
+               handler for the given file while <run> asks the shell to execute it.
+
+               You can specify the MIME type for the given file explicitely using the "mime"
+               property. If no "mime" property is specified, then the extension of the file
+               will be used to find the MIME type.
+-->
+<!ELEMENT open EMPTY>
+<!ATTLIST open file CDATA "$(thisfile)">    <!-- the file to open -->
+<!ATTLIST open flags (ASYNC|SYNC) "ASYNC">  <!-- the possible flags are: ASYNC, SYNC -->
+<!ATTLIST open mime CDATA "">               <!-- the MIME type explicit for the "file": text/plain, text/html ... -->
+
+
+
+
+<!--                                                                                -->
+<!--                          ADDITIONAL CUSTOM ACTIONS                             -->
+<!--                                                                                -->
+<!-- add the definition for you own actions here (and modify the 'actions' element
+     tag definition to include your actions in the enumeration values) -->

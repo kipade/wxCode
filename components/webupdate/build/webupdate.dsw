@@ -1,0 +1,91 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+Project: "webupdate"=webupdate_webupdate.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "webupdater"=webupdate_webupdater.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+Begin Project Dependency
+Project_Dep_Name webupdate
+End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "simple_1_0_0"=webupdate_simple_1_0_0.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+Begin Project Dependency
+Project_Dep_Name webupdater
+End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "simple_2_0_3"=webupdate_simple_2_0_3.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+Begin Project Dependency
+Project_Dep_Name webupdater
+End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "advanced_0_0_1"=webupdate_advanced_0_0_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+Begin Project Dependency
+Project_Dep_Name webupdater
+End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "advanced_1_5_0"=webupdate_advanced_1_5_0.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+Begin Project Dependency
+Project_Dep_Name webupdater
+End Project Dependency
+}}}
+
+###############################################################################
+

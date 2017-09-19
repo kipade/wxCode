@@ -1,0 +1,99 @@
+lang=Español
+canonicalName=es_ES
+
+&Files=&Archivo
+&Add Tab=&Añadir Pestaña
+Re&move Tab=E&liminar Pestaña
+&New folder=&Nueva Carpeta
+&Copy=&Copiar
+&Delete=&Borrar
+&Rename=&Renombrar
+&Filter=&Filtro
+&Execute=&Ejecutar
+&Exit=&Salir
+&Help=&Ayuda
+About as...=Acerca de...
+&Check updates=Buscar actualizaciones
+
+New Folder=Nueva Carpeta
+Copy=Copiar
+Copy to...=Copiar a...
+Delete=Borrar
+Rename=Renonbrar
+Exec=Ejecutar
+Go=Ir
+Refresh=Refrescar...
+Devices=Dispositivos
+Filter=Filtro
+
+Files=Ficheros
+Extension=Extensión
+Size=Tamaño
+Date=Fecha
+
+&Restore wxOpenCommander=Mostrar wxOpenCommander
+&Hide wxOpenCommander=Ocultar wxOpenCommander
+
+Removable=Extraible
+Hard Disk=Disco duro
+
+Do you like DELETE selected files?=¿Desea BORRAR los fichero(s) Seleccionados?
+Delete=Borrando
+There are some files read only=Hay algunos ficheros de solo Lectura
+Folder name :=Nombre de la carpeta :
+Create folder=Crear carpeta
+New Folder=Nueva Carpeta
+Write the command for execute in :=Escriba el comando a Ejecutar en :
+Exec command=Ejecutar comando
+Directories and Files=Directorios y Ficheros
+Coping files=Copiando ficheros
+Coping file=Copiando fichero
+of=de
+Finalizing the copy. Wait a moment...=Finalizando la copia. Espere un momento...
+
+&Edit=&Edición
+&Paste=&Pegar
+
+&Options=&Opciones
+&Language=&Idioma
+Hot Keys=&Teclas Rápidas
+Language selector=Selector de Idioma
+Select your language=Seleccione su Idioma
+
+Hot Keys Dialog=Configuración teclas rápidas
+Keys=Teclas
+Programs=Programas
+Ok=Aceptar
+Press Key (Ctrl + ? or F?)=Pulse (Ctrl + ? o F?)
+Save=Guardar
+Cancel=Cancelar
+Programs:=Programas:
+Delete=Borrar
+Edit=Edit
+Add=Añadir
+Hot Keys for Launch other Programs=Teclas rápidas para lanzar otros programas
+
+Copy Files=Copiar Archivos
+Source=Origen
+Destination=Destino
+Loading files (Please wait...)=Cargando archivos (Por favor espere...)
+Copy finished with some errors=Copia finalizada con errores
+File copied sucessfuly=Archivo copiado correctamente
+File already exist in destination=El archivo ya existe en el destino
+File is Read only in destination=El archivo esta marcado como Solo Lectura en el destino
+Path=Ruta
+File=Archivo
+Overwrite Read only files=Reemplazar archivos de solo Lectura
+Overwrite existing files=Reemplazar archivos existentes
+Close=Cerrar
+Enter the text for filter the files : Example (*.EXE)=Introduzca el texto para filtar los archivos : Ejemplo (*.EXE)
+Filter dialog=Ventana de Filtro
+
+Massive rename=Renombrado Masivo
+Rename ALL SELECTED files=Renombra TODOS LOS ficheros SELECCIONADOS
+Example:=Ejemplo
+NewFileName (%n).ext=NuevoNombreFichero (%n).ext
+%n - Number of order=%n - Número de orden
+You must put the order number '%n'=Debes de poner el número de orden '%n'
+Error=Error
+

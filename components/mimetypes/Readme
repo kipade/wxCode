@@ -1,0 +1,11 @@
+Component:  wxMimeTypes
+Release:    2006-06-21
+Documents:  http://wxcode.sourceforge.net/components/mimetypes/index.html
+wxWidgets:  2.6.x
+Maintainer: Otto Wyss (wyo)
+Subdir:     mimetypes
+
+Description:
+wxMimeTypes allows to access all information of the mime type of an application.
+An application can check if its mime type is correctly set and if not to install
+the mime type.

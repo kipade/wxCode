@@ -1,0 +1,185 @@
+<HTML>
+<head><title>wxSplitWindow</title></head>
+
+<BODY BGCOLOR=#FFFFFF>
+<FONT FACE="Arial, Lucida, Helvetica">
+<A NAME="wxsplitwindow"></A>
+
+<H2>wxSplitWindow</H2>
+<P>
+wxSplitWindow allows to split a window into 2 subwindows either horizontal or vertical with a sash in between. It's similar to wxSpitterWindow but it doesn't destroy any window if unsplit. So the 2 partial windows can always be access regardless if split or unsplit.
+<P>
+<B>Derived from</B><P>
+wxWindow<P>
+<B>Include files</B><P>
+&lt;wx/splitwindow.h&gt;<P>
+<A HREF="#wxsplitwindowconstr">wxSplitWindow::wxSplitWindow</A><BR>
+<A HREF="#wxsplitwindowcreate">wxSplitWindow::Create</A><BR>
+<A HREF="#wxsplitwindowgetwindow1">wxSplitWindow::GetWindow1</A><BR>
+<A HREF="#wxsplitwindowgetwindow2">wxSplitWindow::GetWindow2</A><BR>
+<A HREF="#wxsplitwindowgetorientation">wxSplitWindow::GetOrientation</A><BR>
+<A HREF="#wxsplitwindowsetorientation">wxSplitWindow::SetOrientation</A><BR>
+<A HREF="#wxsplitwindowgetsashposition">wxSplitWindow::GetSashPosition</A><BR>
+<A HREF="#wxsplitwindowsetsashposition">wxSplitWindow::SetSashPosition</A><BR>
+<A HREF="#wxsplitwindowgetsashimpact">wxSplitWindow::GetSashImpact</A><BR>
+<A HREF="#wxsplitwindowsetsashimpact">wxSplitWindow::SetSashImpact</A><BR>
+<A HREF="#wxsplitwindowgetsashwidth">wxSplitWindow::GetSashWidth</A><BR>
+<A HREF="#wxsplitwindowsetsashwidth">wxSplitWindow::SetSashWidth</A><BR>
+<A HREF="#wxsplitwindowgetminwindowsize">wxSplitWindow::GetMinWindowSize</A><BR>
+<A HREF="#wxsplitwindowsetminwindowsize">wxSplitWindow::SetMinWindowSize</A><BR>
+<A HREF="#wxsplitwindowinitialize">wxSplitWindow::Initialize</A><BR>
+<P>
+
+<HR>
+<A NAME="wxsplitwindowconstr"></A>
+<H3>wxSplitWindow::wxSplitWindow</H3>
+<P>
+<B></B> <B>wxSplitWindow</B>()<P>
+Default constructor.<P>
+<B></B> <B>wxSplitWindow</B>(<B>wxWindow*</B><I> parent</I>, <B>wxWindowID</B><I> id = -1</I>,
+<B>const wxPoint&amp;</B><I> pos = wxDefaultPosition</I>, <B>const wxSize&amp;</B><I> size = wxDefaultSize</I>,
+<B>long</B><I> style</I>, <B>const wxString&amp; </B><I>name = "SplitWindow"</I>)<P>
+Constructor, creating and showing a split window. Parameters see Create.<P>
+
+<A NAME="wxsplitwindowcreate"></A>
+<B></B> <B>Create</B>(<B>wxWindow*</B><I> parent</I>, <B>wxWindowID</B><I> id = -1</I>,
+<B>const wxPoint&amp;</B><I> pos = wxDefaultPosition</I>, <B>const wxSize&amp;</B><I> size = wxDefaultSize</I>,
+<B>long</B><I> style</I>, <B>const wxString&amp; </B><I>name = "SplitWindow"</I>)<P>
+Creating and showing a split window.<P>
+<B>Parameters</B><P>
+<I>parent</I><UL><UL>
+Parent window. Must not be NULL.</UL></UL>
+<P>
+<I>id</I><UL><UL>
+Window identifier. A value of -1 indicates a default value.</UL></UL>
+<P>
+<I>pos</I><UL><UL>
+Window position.</UL></UL>
+<P>
+<I>size</I><UL><UL>
+Window size. If the default size (-1, -1) is specified then the window is sized
+appropriately.</UL></UL>
+<P>
+<I>style</I><UL><UL>
+Window style. See wxWindow.</UL></UL>
+<P>
+<I>name</I><UL><UL>
+Window name.</UL></UL>
+<P>
+
+
+<HR>
+<A NAME="wxsplitwindowgetwindow1"></A>
+<H3>wxSplitWindow::GetWindow1</H3>
+<P>
+<B>wxWindow*</B> <B>GetWindow1</B>() <B>const</B><P>
+Returns the pointer to window one (left/top).<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowgetwindow2">GetWindow2</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowgetwindow2"></A>
+<H3>wxSplitWindow::GetWindow2</H3>
+<P>
+<B>wxWindow*</B> <B>GetWindow2</B>() <B>const</B><P>
+Returns the pointer to window two (right/bottom).<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowgetwindow1">GetWindow1</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowgetorientation"></A>
+<H3>wxSplitWindow::GetOrientation</H3>
+<P>
+<B>wxOrientation</B> <B>GetOrientation</B>() <B>const</B><P>
+Returns the orientation of the split.<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowsetorientation">SetOrientation</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowsetorientation"></A>
+<H3>wxSplitWindow::SetOrientation</H3>
+<P>
+<B>void</B> <B>SetOrientation</B>(<B>wxOrientation</B><I> orientation</I>)<P>
+Sets the orientation of the split.<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowgetorientation">GetOrientation</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowgetsashposition"></A>
+<H3>wxSplitWindow::GetSashPosition</H3>
+<P>
+<B>int</B> <B>GetSashPosition</B>() <B>const</B><P>
+Returns the position of the sash.<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowsetsashposition">SetSashPosition</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowsetsashposition"></A>
+<H3>wxSplitWindow::SetSashPosition</H3>
+<P>
+<B>void</B> <B>SetSashPosition</B>(<B>int</B><I> pos</I>)<P>
+Sets the position of the sash.<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowgetsashposition">GetSashPosition</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowgetsashimpact"></A>
+<H3>wxSplitWindow::GetSashImpact</H3>
+<P>
+<B>int</B> <B>GetSashImpact</B>() <B>const</B><P>
+Returns the value of the sash impact (in percents of window one).<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowsetsashimpact">SetSashImpact</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowsetsashimpact"></A>
+<H3>wxSplitWindow::SetSashImpact</H3>
+<P>
+<B>void</B> <B>SetSashImpact</B>(<B>int</B><I> impact</I>)<P>
+Sets the value of the sash impact (in percents of window one).<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowgetsashimpact">GetSashImpact</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowgetsashwidth"></A>
+<H3>wxSplitWindow::GetSashWidth</H3>
+<P>
+<B>int</B> <B>GetSashWidth</B>() <B>const</B><P>
+Returns the sash width.<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowsetsashwidth">SetSashWidth</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowsetsashwidth"></A>
+<H3>wxSplitWindow::SetSashWidth</H3>
+<P>
+<B>void</B> <B>SetSashWidth</B>(<B>int</B><I> width</I>)<P>
+Sets the sash width.<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowgetsashwidth">GetSashWidth</A>.<P>
+
+<HR>
+<A NAME="wxsplitwindowgetminwindowsize"></A>
+<H3>wxSplitWindow::GetMinWindowSize</H3>
+<P>
+<B>int</B> <B>GetMinWindowSize</B>() <B>const</B><P>
+Returns the minimun window size (only the split orientation).<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowsetminwindowsize">SetMinWindowSize</A>.<P>
+
+
+<HR>
+<A NAME="wxsplitwindowsetminwindowsize"></A>
+<H3>wxSplitWindow::SetMinWindowSize</H3>
+<P>
+<B>void</B> <B>SetMinWindowSize</B>(<B>int</B><I> width</I>)<P>
+Sets the minimun window size (only the split orientation).<P>
+See also <A HREF="manual_wxsplitwindow.html#wxsplitwindowgetminwindowsize">GetMinWindowSize</A>.<P>
+
+<HR>
+<A NAME="wxsplitwindowinitialize"></A>
+<H3>wxSplitWindow::Initialize</H3>
+<P>
+<B>bool</B> <B>Initialize</B>(<B>wxWindow*</B><I> one</I>, <B>wxWindow*</B><I> two</I>,
+<B>wxOrientation</B><I> orientation</I>)<P>
+Initializes the split window with its subwindows.<P>
+
+</FONT></BODY></HTML>

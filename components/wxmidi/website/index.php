@@ -1,0 +1,12 @@
+<?php
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  // Author: Cecilio Salmeron
+  // RCS-ID: $Id: index.php 280 2005-09-04 14:09:14Z cecilios $
+  // Notes: the index page of the website of wxMidi
+  ////////////////////////////////////////////////////////////////////////////////////////////
+	header("Location: http://www.lenmus.org/sw/"
+			."page.php?pid=paginas&name=wxmidi&lang=Eng");
+	exit();
+
+?>
+

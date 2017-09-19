@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+
+<!-- Created by: Emilien Kia <cursorstar@users.sourceforge.net>     -->
+<!-- RCS-ID: $Id: wxAvahi.bkl,v 1.2 2007/03/04 08:57:20 frm Exp $ -->
+
+<makefile>
+
+    <include file="presets/wxcode.bkl"/>
+
+	<option name="USE_GUI">
+	  <default-value>1</default-value>
+	  <description>Does wxAvahi use GUI components</description>
+	  <values>0,1</values>]
+	</option>
+
+    <!-- ================================================================= -->
+    <!-- Settings for this component                                       -->
+    <!-- ================================================================= -->
+
+    <set-comp-name>avahi</set-comp-name>
+
+    <set var="COMP_HDR">$(fileList('include/wx/avahi/*.h'))</set>
+    
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Library settings                                                  -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<template id="wxavahi">
+		<define>USE_GUI=$(USE_GUI)</define>
+	</template>
+
+    <lib id="wxavahi_lib" template="wxavahi,wxcode-lib" cond="WX_SHARED=='0'">
+    </lib>
+    <dll id="wxavahi_dll" template="wxavahi,wxcode-dll" cond="WX_SHARED=='1' and USE_GUI=='0'">
+        <wx-lib>net</wx-lib>
+        <wx-lib>base</wx-lib>
+    </dll>
+    <dll id="wxavahigui_dll" template="wxavahi,wxcode-dll" cond="WX_SHARED=='1' and USE_GUI=='1'">
+        <wx-lib>net</wx-lib>
+        <wx-lib>base</wx-lib>
+        <wx-lib>core</wx-lib>
+    </dll>
+
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Sample(s) settings                                                -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <wxcode-sample id="avahi" template="wxavahi">
+        <dir>sample</dir>
+
+        <library>wxavahi_lib</library>
+        <wx-lib>net</wx-lib>
+        <wx-lib>core</wx-lib>
+        <wx-lib>base</wx-lib>
+    </wxcode-sample>
+
+    <!-- Auxiliary targets -->
+    <!-- ================= -->
+
+    <make-tarball/>
+
+</makefile>

@@ -1,0 +1,148 @@
+<!-- 
+   Name:        local.dtd
+   Purpose:     a simple DTD to validate local update script
+   Version:     1.0
+   Author:      Francesco Montorsi
+   Created:     2005/06/24
+   RCS-ID:      $Id: local.dtd 299 2005-09-18 19:45:30Z frm $
+   Copyright:   (c) 2005 Francesco Montorsi
+   Licence:     wxWidgets licence
+
+   This Document Type Definition (DTD) is for the update scripts that reside
+   in your program's folder and which just list the installed packages.
+   This file should make easier to check validity of the
+   scripts you write and it should also be as a simple reference guide for the 
+   update script format.
+
+   The local XML scripts which follows this DTD should include the following
+   line before the <webupdate> root tag:
+
+      <!DOCTYPE webupdate PUBLIC "-//WebUpdate//DTD WebUpdater 1.0//EN" 
+            "http://wxcode.sourceforge.net/components/webupdate/local.dtd">
+
+   which just tells to XML parser that the XML file follows the WebUpdater DTD v1.0.
+	 
+   Also remember to validate your XML files against this DTD before mailing for
+   problems about your scripts: WebUpdate component is not responsible for
+   unwanted behaviours coming from malformed update scripts !
+
+-->
+
+
+
+
+<!-- WEBUPDATE tag: this is the root of the script file.
+                    Requires the 'version' property which must be set to the
+                    same version of this DTD file (you can find it at the
+                    beginning of this document).
+-->
+<!ELEMENT webupdate (appname,appfile,xrc?,res?,restart?,savelog?,remoteuri?,keywords?,local-package*)>
+<!ATTLIST webupdate version CDATA #IMPLIED>
+
+
+
+
+
+<!--                                                                                -->
+<!--                        CHILDREN TAGS OF 'WEBUPDATE'                            -->
+<!--                                                                                -->
+
+
+<!-- APPNAME tag: specifies the name of the application being updated.
+-->
+<!ELEMENT appname (#PCDATA)>
+
+
+<!-- APPFILE tag: specifies the name of the executable file for the application
+                  being updated. This field is used to restart the application 
+ 		  after the update process. To keep this field cross-platform you
+                  should not specify the extension which will be added by the
+                  WebUpdater application (.EXE for win32; nothing for unix).
+-->
+<!ELEMENT appfile (#PCDATA)>
+
+
+<!-- XRC: specifies the name of the XRC resource file. 
+          If this tag is not specified, then "webupdatedlg.xrc" will be used.
+          Can be overridden by the "xrc" command line option.
+-->
+<!ELEMENT xrc (#PCDATA)>
+
+
+<!-- RES: specifies the name of the dialog resource to load from the XRC file.
+          You can also avoid to use this tag and use the "res" option of the
+          WebUpdater program instead.
+          Can be overridden by the "res" command line option.
+-->
+<!ELEMENT res (#PCDATA)>
+
+
+<!-- RESTART: can be "0" or "1" and indicates if the updated application should
+              be restarted when WebUpdater will be closed or not.
+              This tag is optional; default value is "0".
+              Can be overridden by the "restart" command line option.
+-->
+<!ELEMENT restart (#PCDATA)>
+
+
+<!-- SAVELOG: can be "0" or "1" and indicates if the WebUpdater should save a
+              a log file for debugging purposes.
+              This tag is optional; default value is "0".
+              Can be overridden by the "savelog" command line option.
+-->
+<!ELEMENT savelog (#PCDATA)>
+
+
+<!-- REMOTEURI tag: specifies where the WebUpdate remote script is stored.
+                    This tag is optional in the sense that it can be missing from
+                    the XML local script but in this case it *must* be present in
+                    the WebUpdater command line options since this is a required info.
+                    If this tag is present and also the "uri" command line option is
+                    given to WebUpdater, then the command line option will override this
+                    value.
+-->
+<!ELEMENT remoteuri (#PCDATA)>
+
+
+<!-- KEYWORDS tag: specifies additional keywords used by WebUpdate to substitute
+                                  $(xxxx) strings in the remote script. See remote.dtd for more info
+								  about keyword substitution.
+                                  The keywords must be in the format:
+								   key1="value1",key2="value2",key3="value3" ...
+								In the sample above, the following substitution will be performed
+								
+								$(key1)  => value1
+								$(key2)  => value2
+								$(key3)  => value3
+								....
+								
+								Note: this tag is parsed after that all the standard keywords (see remote.dtd)
+								has been initialized so that you can override them (e.g. using 
+								programdir=c:\programdir\loaded\by\registry, the WebUpdater will
+								use that value to substitute $(programdir) keys...).
+								
+								Note #2: this is the only tag in a local XML script where keyword substitution
+								is performed: i.e. the following is allowed and does what you think:
+									        <keywords>addondir=$(programdir)\addons</keywords> 
+-->
+<!ELEMENT keywords (#PCDATA)>
+
+
+<!-- LOCAL-PACKAGE: begins a new local package section.
+-->
+<!ELEMENT local-package (version)>
+<!ATTLIST local-package id ID #REQUIRED>
+
+
+
+
+
+
+<!--                                                                                -->
+<!--                        CHILDREN TAGS OF 'LOCAL-PACKAGE'                        -->
+<!--                                                                                -->
+
+<!-- VERSION tag: the version string for this local package.
+-->
+<!ELEMENT version (#PCDATA)>
+

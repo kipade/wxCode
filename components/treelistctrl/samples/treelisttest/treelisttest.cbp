@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="treelisttest" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="doc\;" />
+		<Build>
+			<Target title="debug - win32 - wx29">
+				<Option platforms="Windows;" />
+				<Option output=".\treelisttest" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".\obj_debug\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-mthreads" />
+					<Add option="-D__DEBUG__" />
+				</Compiler>
+				<Linker>
+					<Add option="-mthreads" />
+					<Add library="libwx_mswu_xrc-2.9.a" />
+					<Add library="libwx_mswu_adv-2.9.a" />
+					<Add library="libwx_mswu_core-2.9.a" />
+					<Add library="libwx_baseu_xml-2.9.a" />
+					<Add library="libwx_baseu-2.9.a" />
+					<Add library="wxexpat-2.9" />
+					<Add library="libwxpng-2.9" />
+					<Add library="libwxzlib-2.9" />
+					<Add library="liboleaut32.a" />
+					<Add library="libole32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libwinspool" />
+					<Add library="libcomctl32.a" />
+				</Linker>
+			</Target>
+			<Target title="Release - win32 - wx28">
+				<Option platforms="Windows;" />
+				<Option output=".\treelisttestr" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".\obj_release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-mthreads" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mthreads" />
+					<Add library="libwx_msw_xrc-2.8.a" />
+					<Add library="libwx_msw_adv-2.8.a" />
+					<Add library="libwx_msw_core-2.8.a" />
+					<Add library="libwx_base_xml-2.8.a" />
+					<Add library="libwx_base-2.8.a" />
+					<Add library="wxexpat-2.8" />
+					<Add library="liboleaut32.a" />
+					<Add library="libole32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+				</Linker>
+			</Target>
+			<Target title="debug - linux - wx28">
+				<Option platforms="Unix;Mac;" />
+				<Option output=".\treelisttest" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".\obj_debug\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-pthread" />
+					<Add option="-D_FILE_OFFSET_BITS=64" />
+					<Add option="-D_LARGE_FILES" />
+					<Add option="-D__WXGTK__" />
+					<Add option="-D__DEBUG__" />
+				</Compiler>
+				<Linker>
+					<Add library="libwx_gtk2u_core-2.8" />
+					<Add library="libwx_baseu-2.8" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-D__WXMSW__" />
+			<Add directory="..\..\include" />
+			<Add directory="$(#wx)\lib\wx\include\msw-ansi-release-static-2.8" />
+			<Add directory="$(#wx)\lib\wx\include\msw-unicode-static-2.9" />
+			<Add directory="$(#wx)\include\wx-2.8" />
+			<Add directory="$(#wx)\include\wx-2.9" />
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="$(#wx)\include\wx-2.8" />
+			<Add directory="$(#wx)\include\wx-2.9" />
+		</ResourceCompiler>
+		<Linker>
+			<Add directory="$(#wx)\lib" />
+		</Linker>
+		<Unit filename="..\..\Readme">
+			<Option virtualFolder="doc\" />
+		</Unit>
+		<Unit filename="..\..\include\wx\treelistctrl.h" />
+		<Unit filename="BuildInfo.txt">
+			<Option virtualFolder="doc\" />
+		</Unit>
+		<Unit filename="bitmaps\dirclosed.bmp" />
+		<Unit filename="bitmaps\dirclosed.xpm" />
+		<Unit filename="bitmaps\diropened.bmp" />
+		<Unit filename="bitmaps\diropened.xpm" />
+		<Unit filename="bitmaps\file.bmp" />
+		<Unit filename="bitmaps\file.xpm" />
+		<Unit filename="treelisttest.cpp" />
+		<Unit filename="treelisttest.ico" />
+		<Unit filename="treelisttest.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="treelisttest.xpm" />
+		<Unit filename="..\..\src\treelistctrl.cpp" />
+		<Unit filename="..\..\website\Readme.txt">
+			<Option virtualFolder="doc\" />
+		</Unit>
+		<Unit filename="..\..\website\ToDo.txt">
+			<Option virtualFolder="doc\" />
+		</Unit>
+		<Unit filename="..\..\website\image.png" />
+		<Unit filename="..\..\website\index.html">
+			<Option virtualFolder="doc\" />
+		</Unit>
+		<Unit filename="..\..\website\reference.html">
+			<Option virtualFolder="doc\" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

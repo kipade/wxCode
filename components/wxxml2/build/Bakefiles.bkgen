@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<!-- Created by: Francesco Montorsi <frm@users.sourceforge.net>     -->
+<!-- Date: 9/10/2004                                                -->
+
+
+<bakefile-gen xmlns="http://www.bakefile.org/schema/bakefile-gen">
+
+    <include file="../../../build/bakefiles/presets/wxcode.bkgen"/>
+
+    <!-- wxXml2-specific: -->
+    <input>wxxml2.bkl</input>
+    <del-formats>msvc6prj</del-formats>     <!-- too old for us -->
+
+</bakefile-gen>

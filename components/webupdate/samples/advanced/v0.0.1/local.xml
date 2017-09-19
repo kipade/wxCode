@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<webupdate version="1.0">
+	<appname>wxWebUpdate ADVANCED sample</appname>
+	<appfile>advanced</appfile>
+	<res>wxWebUpdateDlg</res>
+
+	<local-package id="core">
+		<version>0.0.1</version>
+	</local-package>
+</webupdate>
+

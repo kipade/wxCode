@@ -1,0 +1,19 @@
+/* XPM */
+static const char *tick_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"11 11 2 1",
+". c Black",
+"  c None",
+/* pixels */
+"           ",
+".       .  ",
+".      ... ",
+".     .... ",
+".    ....  ",
+"..  ....   ",
+".......    ",
+"......     ",
+". ...      ",
+".  .       ",
+".          "
+};

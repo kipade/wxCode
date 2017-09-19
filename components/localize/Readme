@@ -1,0 +1,11 @@
+Component:  wxLocalize
+Release:    2006-06-21
+Documents:  http://wxcode.sourceforge.net/components/localize/index.html
+wxWidgets:  2.6.x
+Maintainer: Otto Wyss (wyo)
+Subdir:     localize
+
+Description:
+wxLocalize allows for the localization of any text file of an application. This
+is very handy for the help books (.htb) to be equally localized as any text within
+the application.

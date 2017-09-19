@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<!-- RCS-ID: $Id: Bakefiles.bkgen,v 1.10 2007/11/17 12:53:26 frm Exp $ -->
+
+<bakefile-gen xmlns="http://www.bakefile.org/schema/bakefile-gen">
+
+    <!-- this tag tells bakefile_gen that the user bakefile wants to use the 
+         default wxCode settings found in wxCode/build/bakefiles/presets/wxcode.bkgen.
+         Note that this means that such file does exist on your hard-disk at bake-time!
+    -->
+    <include file="../../../build/bakefiles/presets/wxcode.bkgen"/>
+
+    <!-- you probably need to edit only this tag replacing it with the name of
+         your .bkl file:
+    -->
+    <input>wxadvtable.bkl</input>
+
+    <disable-formats>msvs2005prj,dmars,dmars_smake,cbx_unix,cbuilderx,msevc4prj</disable-formats>
+    <add-formats>autoconf,borland,mingw,msvc,msvc6prj,watcom</add-formats>
+    
+</bakefile-gen>

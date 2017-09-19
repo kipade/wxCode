@@ -1,0 +1,15 @@
+ogl                    ICON    "ogl.ico"
+
+/* Useful if PROVIDE_DEFAULT_ICONS is set in wx_setup.h */
+#define IHaveMDIParentIcon
+#define IHaveMDIChildIcon
+
+wxSTD_MDIPARENTFRAME        ICON    "ogl.ico"
+wxSTD_MDICHILDFRAME         ICON    "ogl.ico"
+
+studio                      ICON    "ogl.ico"
+folder1                     ICON    "bitmaps/folder1.ico"
+file1                       ICON    "bitmaps/file1.ico"
+
+#include "wx/msw/wx.rc"
+
