@@ -61,8 +61,6 @@ END_EVENT_TABLE()
 
 void wxSheetSplitter::Init()
 {
-    m_container.SetContainerWindow(this);
-
     m_tlSheet = NULL;
     m_trSheet = NULL;
     m_blSheet = NULL;
