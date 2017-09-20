@@ -9,7 +9,6 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "demo.h"
-#include <wx/aui/aui.h>
 #include <wx/aboutdlg.h>
 
 const wxChar *appVersion = wxT("1.5");
@@ -448,7 +447,7 @@ END_EVENT_TABLE()
 MainFrame::MainFrame()
 : wxFrame(NULL, wxID_ANY, wxString::Format(wxT("wxAdvTable demo %s"), appVersion), wxDefaultPosition, wxSize(1100, 800))
 {
-	wxAuiManager *auiManager = new wxAuiManager(this);
+	auiManager = new wxAuiManager(this);
 
 	// create wxAdvTable
 	m_advTable = new wxAdvTable(this, wxID_ANY);
@@ -476,6 +475,7 @@ MainFrame::MainFrame()
 
 MainFrame::~MainFrame()
 {
+    auiManager->UnInit();
 }
 
 void MainFrame::CreateMainMenu()

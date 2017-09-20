@@ -25,6 +25,7 @@
 #include "wx/wxadvtable.h"
 
 #include <wx/clrpicker.h>
+#include <wx/aui/aui.h>
 
 /**
  * Control panel is panel used to set
@@ -111,6 +112,7 @@ private:
 
 	wxAdvTable *m_advTable;
 	ControlPanel *m_controlPanel;
+	wxAuiManager *auiManager;
 
 	DECLARE_EVENT_TABLE()
 };

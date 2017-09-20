@@ -25,6 +25,7 @@
 
 #include <wx/docview.h>
 #include <wx/txtstrm.h>
+#include <wx/aui/aui.h>
 
 #include "propertypage.h"
 
@@ -156,6 +157,7 @@ private:
 	TablePanel *m_tablePanel;
 
 	BuilderDocument *m_doc;
+	wxAuiManager *auiManager;
 
 	DECLARE_EVENT_TABLE()
 };

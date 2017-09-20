@@ -121,7 +121,7 @@ wxAdvHdrCellEvent::wxAdvHdrCellEvent(int id, wxEventType type, wxObject* obj,
 
 void ResizeBitmap(wxBitmap &bmp, wxCoord newWidth, wxCoord newHeight)
 {
-	if (bmp.GetWidth() != newWidth || bmp.GetHeight() != newHeight) {
+	if (bmp.IsOk() && (bmp.GetWidth() != newWidth || bmp.GetHeight() != newHeight)) {
 		bmp.Create(newWidth, newHeight);
 	}
 }
@@ -912,9 +912,12 @@ void wxAdvDateTimeCellRenderer::Draw(wxAdvTable *table, wxDC &dc, wxRect rc, wxS
 {
 	// XXX overhead
 	wxDateTime dt;
-	dt.ParseFormat(value.c_str(), modelDateFormat);
-
-	value = dt.Format(m_format.c_str());
+	wxString::const_iterator dtEnd;
+	if(dt.ParseFormat(value.c_str(), modelDateFormat, &dtEnd) != true)
+    {
+        dt = wxDateTime::Now();
+    }
+    value = dt.Format(m_format.c_str());
 
 	wxAdvStringCellRenderer::Draw(table, dc, rc, value, selected, focused, attr);
 }
@@ -1055,11 +1058,12 @@ wxAdvStringCellEditor::wxAdvStringCellEditor(wxAdvTable *table)
 	m_textCtrl = new wxTextCtrl(table, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
 			wxTE_PROCESS_ENTER | wxBORDER_NONE);
 	m_textCtrl->Show(false);
-	m_textCtrl->SetNextHandler(this);
+	m_textCtrl->SetEventHandler(this);
 }
 
 wxAdvStringCellEditor::~wxAdvStringCellEditor()
 {
+    m_textCtrl->SetEventHandler(m_textCtrl);
 	m_textCtrl->Destroy();
 }
 
@@ -1249,7 +1253,7 @@ wxAdvDateTimeCellEditor::wxAdvDateTimeCellEditor(wxAdvTable *table, bool dropDow
 : wxAdvCellEditor(table)
 {
 	m_datePicker = new wxDatePickerCtrl(table, wxID_ANY, wxDefaultDateTime,
-			wxDefaultPosition, wxDefaultSize, wxDP_SHOWCENTURY | (dropDown ? wxDP_DROPDOWN : wxDP_SPIN));
+			wxDefaultPosition, wxDefaultSize, wxDP_SHOWCENTURY | (dropDown ? wxDP_DROPDOWN : wxDP_DEFAULT));
 	m_datePicker->Show(false);
 }
 
@@ -1271,7 +1275,8 @@ void wxAdvDateTimeCellEditor::DoActivate()
 	wxString value = GetValue();
 
 	wxDateTime dtValue;
-	wxCHECK_RET(dtValue.ParseFormat(value.c_str(), modelDateFormat) != NULL, wxT("Error parsing datetime value"));
+    wxString::const_iterator dtEnd;
+	wxCHECK_RET(dtValue.ParseFormat(value.c_str(), modelDateFormat, &dtEnd) != false, wxT("Error parsing datetime value"));
 
 	m_datePicker->SetValue(dtValue);
 
@@ -3182,7 +3187,10 @@ void wxAdvTable::RedrawAll()
 	// draw table
 	wxMemoryDC dataDc(m_backBitmap);
 
-	DrawBackground(dataDc, m_backBitmap.GetWidth(), m_backBitmap.GetHeight());
+	if(m_backBitmap.IsOk())
+    {
+        DrawBackground(dataDc, m_backBitmap.GetWidth(), m_backBitmap.GetHeight());
+    }
 	dataDc.SetDeviceOrigin(-viewStart.x - rcData.x, -viewStart.y - rcData.y);
 	DrawTable(dataDc);
 
@@ -3190,7 +3198,10 @@ void wxAdvTable::RedrawAll()
 	if (m_showRows) {
 		wxMemoryDC rowsDc(m_backBitmapRows);
 
-		DrawBackground(rowsDc, m_backBitmapRows.GetWidth(), m_backBitmapRows.GetHeight());
+		if(m_backBitmapRows.IsOk())
+        {
+            DrawBackground(rowsDc, m_backBitmapRows.GetWidth(), m_backBitmapRows.GetHeight());
+        }
 
 		rowsDc.SetDeviceOrigin(0, -viewStart.y - rcData.y);
 		DrawHdrCells(rowsDc, m_rows);
@@ -3200,7 +3211,10 @@ void wxAdvTable::RedrawAll()
 	if (m_showCols) {
 		wxMemoryDC colsDc(m_backBitmapCols);
 
-		DrawBackground(colsDc, m_backBitmapCols.GetWidth(), m_backBitmapCols.GetHeight());
+        if(m_backBitmapCols.IsOk())
+        {
+            DrawBackground(colsDc, m_backBitmapCols.GetWidth(), m_backBitmapCols.GetHeight());
+        }
 
 		colsDc.SetDeviceOrigin(-viewStart.x - rcData.x, 0);
 		DrawHdrCells(colsDc, m_cols);

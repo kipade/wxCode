@@ -8,7 +8,6 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "builder.h"
-#include <wx/aui/aui.h>
 #include <wx/aboutdlg.h>
 
 #include <wx/tokenzr.h>
@@ -776,7 +775,7 @@ MainFrame::MainFrame(wxDocManager *docManager)
 {
 	g_mainFrame = this;
 
-	wxAuiManager *auiManager = new wxAuiManager(this);
+	auiManager = new wxAuiManager(this);
 
 	m_propPage = new PropertyPage(this);
 	m_tablePanel = new TablePanel(this);
@@ -795,6 +794,7 @@ MainFrame::MainFrame(wxDocManager *docManager)
 
 MainFrame::~MainFrame()
 {
+    auiManager->UnInit();
 	g_mainFrame = NULL;
 }
 
