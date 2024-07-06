@@ -3765,7 +3765,7 @@ void wxAdvTable::HandleHdrCellMouseEvent(const wxMouseEvent &ev, wxAdvHdrCell *h
 			else {
 				cursorId = wxCURSOR_SIZEWE;
 			}
-			SetCursor(wxCursor(cursorId)); // XXX: can leak resources?!
+			//SetCursor(wxCursor(cursorId)); // XXX: can leak resources?!
 			return ;
 		}
 		else {

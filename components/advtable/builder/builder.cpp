@@ -13,7 +13,7 @@
 #include <wx/tokenzr.h>
 
 #if wxUSE_STD_IOSTREAM
-#error "wxUSE_STD_IOSTREAM defined"
+//#error "wxUSE_STD_IOSTREAM defined"
 #endif
 
 const wxString appName = wxT("wxAdvTable Builder 1.0");
