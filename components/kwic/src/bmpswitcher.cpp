@@ -83,7 +83,7 @@ kwxBmpSwitcher::~kwxBmpSwitcher()
 {
 	delete membitmap;
 
-	CBmpList::Node *node= m_bmplist.GetFirst() ;
+	auto node= m_bmplist.GetFirst() ;
 
 	while(node)
 	{
@@ -125,7 +125,7 @@ void kwxBmpSwitcher::OnPaint(wxPaintEvent &WXUNUSED(event))
 
 	if (m_nCount == 1)
 	{
-		CBmpList::Node *node = m_bmplist.GetFirst();
+		auto node = m_bmplist.GetFirst();
 
 		pCurrent = node->GetData() ;
 	}
@@ -134,7 +134,7 @@ void kwxBmpSwitcher::OnPaint(wxPaintEvent &WXUNUSED(event))
 		if (m_nState >= m_nCount )
 			m_nState = 0 ;
 
-		CBmpList::Node *node = m_bmplist.Item(m_nState);
+		auto node = m_bmplist.Item(m_nState);
 		pCurrent = node->GetData();
 	}
 

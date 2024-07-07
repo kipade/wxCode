@@ -28,6 +28,7 @@ kwxRegulatorBase::kwxRegulatorBase(wxWindow* pParent,
 	m_iCaretPosition(0),
 	m_iTextOffset(9),
 	m_bEditing(false),
+	m_Font(*wxNORMAL_FONT),
 	m_strCurrent(""),
 	m_strPostfix(""),
 	m_cEditColour(*wxRED),
@@ -625,7 +626,7 @@ bool kwxRegulatorBase::bSnap(int & riValue){
  * \author  Andreas Leidig <leidig@fs.wettzell.de> \n
  * \date	14.06.2007
  */
-void kwxRegulatorBase::vSetTxtFont(wxFont & rFont){
+void kwxRegulatorBase::vSetTxtFont(const wxFont & rFont){
 	m_Font = rFont ;
 }
 

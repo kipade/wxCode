@@ -89,7 +89,7 @@ public:
 	
 	double	dGetValue() ;
 	
-	void vSetTxtFont(wxFont &rFont);
+	void vSetTxtFont(const wxFont &rFont);
 	
 	void vSetTxtFontSize(int iPoints);
 	
