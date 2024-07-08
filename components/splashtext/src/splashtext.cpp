@@ -38,6 +38,7 @@
 #include "wx/cmdline.h"
 #include "wx/splitter.h"
 #include "wx/scrolwin.h"
+#include <wx/filename.h>
 
 #include "splashtext.h"
 
@@ -81,27 +82,27 @@ IMPLEMENT_APP(MyApp)
 
 static const wxCmdLineEntryDesc cmdLineDesc[] =
 {
-    { wxCMD_LINE_SWITCH, wxT("h"), wxT("help"),           wxT("show usage") },
-    { wxCMD_LINE_SWITCH, wxT("v"), wxT("verbose"),        wxT("be verbose") },
-    { wxCMD_LINE_SWITCH, wxT("q"), wxT("quiet"),          wxT("be quiet") },
-    { wxCMD_LINE_SWITCH, wxT("b"), wxT("batch"),          wxT("batch mode (no GUI)") },
-    { wxCMD_LINE_SWITCH, wxT("bo"), wxT("bold"),          wxT("use a bold font") },
-    { wxCMD_LINE_SWITCH, wxT("it"), wxT("italic"),        wxT("use an italic font") },
-    { wxCMD_LINE_SWITCH, wxT("r"), wxT("right-justify"),  wxT("right justify the text") },
-    { wxCMD_LINE_SWITCH, wxT("l"), wxT("left-justify"),   wxT("left justify the text (the default)") },
-    { wxCMD_LINE_SWITCH, wxT("c"), wxT("centre"),         wxT("centre the text") },
-    { wxCMD_LINE_SWITCH, wxT("a"), wxT("antialias"),     wxT("antialias (smooth) the text") },
+    { wxCMD_LINE_SWITCH, ("h"), ("help"),           ("show usage") },
+    { wxCMD_LINE_SWITCH, ("v"), ("verbose"),        ("be verbose") },
+    { wxCMD_LINE_SWITCH, ("q"), ("quiet"),          ("be quiet") },
+    { wxCMD_LINE_SWITCH, ("b"), ("batch"),          ("batch mode (no GUI)") },
+    { wxCMD_LINE_SWITCH, ("bo"), ("bold"),          ("use a bold font") },
+    { wxCMD_LINE_SWITCH, ("it"), ("italic"),        ("use an italic font") },
+    { wxCMD_LINE_SWITCH, ("r"), ("right-justify"),  ("right justify the text") },
+    { wxCMD_LINE_SWITCH, ("l"), ("left-justify"),   ("left justify the text (the default)") },
+    { wxCMD_LINE_SWITCH, ("c"), ("centre"),         ("centre the text") },
+    { wxCMD_LINE_SWITCH, ("a"), ("antialias"),     ("antialias (smooth) the text") },
 
-    { wxCMD_LINE_OPTION, wxT("o"), wxT("output"),         wxT("output file (finished splash screen)") },
-    { wxCMD_LINE_OPTION, wxT("i"), wxT("input"),          wxT("input file (template splash screen)") },
-    { wxCMD_LINE_OPTION, wxT("t"), wxT("text"),           wxT("text to add to splash screen") },
-    { wxCMD_LINE_OPTION, wxT("f"), wxT("face"),           wxT("facename to use") },
-    { wxCMD_LINE_OPTION, wxT("p"), wxT("pointsize"),      wxT("point size to use"), wxCMD_LINE_VAL_NUMBER },
-    { wxCMD_LINE_OPTION, wxT("x"), wxT("x-position"),     wxT("x position of text"), wxCMD_LINE_VAL_NUMBER },
-    { wxCMD_LINE_OPTION, wxT("y"), wxT("y-position"),     wxT("y position of text"), wxCMD_LINE_VAL_NUMBER },
-    { wxCMD_LINE_OPTION, wxT("fcol"), wxT("foreground-colour"),     wxT("text foreground colour in 6-digit hex") },
-    { wxCMD_LINE_OPTION, wxT("bcol"), wxT("background-colour"),     wxT("text background colour in 6-digit hex") },
-    { wxCMD_LINE_OPTION, wxT("m"), wxT("magnify"),     wxT("magnification factor (amount text is magnified, then scaled down)"), wxCMD_LINE_VAL_NUMBER },
+    { wxCMD_LINE_OPTION, ("o"), ("output"),         ("output file (finished splash screen)") },
+    { wxCMD_LINE_OPTION, ("i"), ("input"),          ("input file (template splash screen)") },
+    { wxCMD_LINE_OPTION, ("t"), ("text"),           ("text to add to splash screen") },
+    { wxCMD_LINE_OPTION, ("f"), ("face"),           ("facename to use") },
+    { wxCMD_LINE_OPTION, ("p"), ("pointsize"),      ("point size to use"), wxCMD_LINE_VAL_NUMBER },
+    { wxCMD_LINE_OPTION, ("x"), ("x-position"),     ("x position of text"), wxCMD_LINE_VAL_NUMBER },
+    { wxCMD_LINE_OPTION, ("y"), ("y-position"),     ("y position of text"), wxCMD_LINE_VAL_NUMBER },
+    { wxCMD_LINE_OPTION, ("fcol"), ("foreground-colour"),     ("text foreground colour in 6-digit hex") },
+    { wxCMD_LINE_OPTION, ("bcol"), ("background-colour"),     ("text background colour in 6-digit hex") },
+    { wxCMD_LINE_OPTION, ("m"), ("magnify"),     ("magnification factor (amount text is magnified, then scaled down)"), wxCMD_LINE_VAL_NUMBER },
 
     { wxCMD_LINE_NONE }
 };
@@ -269,7 +270,7 @@ bool MyApp::MakeSplash()
 	int imageType = wxDetermineImageType(m_inputFilename);
 	wxImage templateImage;
 	if (imageType == -1 || !wxFileExists(m_inputFilename) ||
-		!templateImage.LoadFile(m_inputFilename, imageType))
+		!templateImage.LoadFile(m_inputFilename, (wxBitmapType)imageType))
 	{
 		wxString msg;
 		msg.Printf(wxT("Sorry, could not load template image %s"), (const wxChar*) m_inputFilename);
@@ -382,7 +383,7 @@ bool MyApp::MakeSplash()
 	// TODO: get the depth from the original image, and set for this image.
 	// May have to do explicit image reduction for this to work.
 
-	if (!completeImage.SaveFile(m_outputFilename, saveImageType))
+	if (!completeImage.SaveFile(m_outputFilename, (wxBitmapType) saveImageType))
 	{
 		wxString msg;
 		msg.Printf(wxT("Sorry, could not save image to %s"), (const wxChar*) m_outputFilename);
@@ -653,7 +654,7 @@ int wxDetermineImageType(const wxString& filename)
 {
     wxString path, name, ext;
 
-    wxSplitPath(filename, & path, & name, & ext);
+    wxFileName::SplitPath(filename, & path, & name, & ext);
 
     ext.MakeLower();
     if (ext == wxT("jpg") || ext == wxT("jpeg"))
