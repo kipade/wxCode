@@ -53,7 +53,7 @@ class WXDLLIMPEXP_FREECHART wxChartPanel : public wxScrolledWindow, public Chart
 {
 public:
 	wxChartPanel(wxWindow *parent, wxWindowID = wxID_ANY, Chart *chart = NULL,
-		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxSize(1,1));
 	virtual ~wxChartPanel();
 
 	/**

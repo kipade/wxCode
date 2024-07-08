@@ -142,12 +142,12 @@ void DatasetArray::Add(Dataset *dataset)
 	dataset->AddRef();
 	DatasetArrayBase::Add(dataset);
 }
-
+/*
 void DatasetArray::Remove(Dataset *dataset)
 {
 	SAFE_UNREF(dataset);
-	DatasetArrayBase::Remove(dataset);
-}
+	DatasetArrayBase::Remove(&dataset);
+}*/
 
 void DatasetArray::RemoveAt(size_t index, size_t count)
 {
