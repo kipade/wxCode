@@ -101,7 +101,7 @@ private:
 
 public:
   
-  wxPlot::wxPlot(wxDC *dc, int w, int h);
+  wxPlot(wxDC *dc, int w, int h);
 
   ~wxPlot();
 

@@ -9,9 +9,9 @@ CPLUS := ${shell wx-config --cxx}
 
 #flags in a Linux system (I will put other examples)-c 
 
-WXCFLAGS := -c ${shell wx-config --static=yes --cxxflags}
+WXCFLAGS := -c ${shell wx-config --cxxflags} -I../bindings -I../include
 
-WXLFLAGS := -lplot ${shell wx-config --static=yes --libs}
+WXLFLAGS := -lplot ${shell wx-config --libs} -L..
 
 OFILES = demowxplot.o 
 

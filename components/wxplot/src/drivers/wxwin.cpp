@@ -126,11 +126,11 @@ plD_polyline_wxwin(PLStream *pls, short *xa, short *ya, PLINT npts)
   wxDC *dc;
   dc=(wxDC *)pls->dc;
 
-  dc->BeginDrawing();
+//  dc->BeginDrawing();
   for (i=1;i <npts; i++){
     dc->DrawLine((long) xa[i-1], -(long) ya[i-1], (long) xa[i], -(long) ya[i]);
   }
-  dc->EndDrawing();
+//  dc->EndDrawing();
 }
 
 void

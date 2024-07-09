@@ -498,7 +498,7 @@ void MyFrame::OnPrintSetup(wxCommandEvent& WXUNUSED(event))
     wxPrintDialogData printDialogData(* g_printData);
     wxPrintDialog printerDialog(this, & printDialogData);
     
-    printerDialog.GetPrintDialogData().SetSetupDialog(TRUE);
+    //printerDialog.GetPrintDialogData().SetSetupDialog(TRUE);
     printerDialog.ShowModal();
 
     (*g_printData) = printerDialog.GetPrintDialogData().GetPrintData();

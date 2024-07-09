@@ -21,7 +21,7 @@ DRIVERS = ./drivers/
 BINDINGS = ./bindings/wxwindows/
 
 #flags in a windows system (I will put other examples)
-WXCFLAGS := -c ${shell wx-config --static=yes --cxxflags}   
+WXCFLAGS := -c ${shell wx-config --cxxflags}   
 ############################################
 
 GPPFILES = plargs.c plbox.c plcont.c plcore.c plctrl.c plcvt.c pldtik.c plfill.c plhist.c plline.c plmap.c plot3d.c plpage.c plsdef.c plshade.c plsym.c pltick.c plvpor.c plwind.c plstripc.c pdfutils.c plbuf.c plgridd.c plimage.c plvect.c
